@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
-class Movie(models.Model):
+class Movie(models.Model):  
     title = models.CharField(max_length=55, blank=False)
     description = models.TextField(max_length=300, blank=False)
 
@@ -21,9 +21,11 @@ class Movie(models.Model):
 
         if  len(ratings) > 0:   
             return sum / len(ratings)     
-        else:
+        else: 
             return 0
 
+    def __str__(self) -> str:
+        return self.title
 
 
 class Rating(models.Model):
@@ -34,9 +36,11 @@ class Rating(models.Model):
         unique_together = (('user', 'movie'),)
         index_together = (('user', 'movie'),)
 
+    def __str__(self) -> str:
+        return self.movie
 
 
-
+     
 
 
 
