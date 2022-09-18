@@ -36,8 +36,8 @@ class Rating(models.Model):
         unique_together = (('user', 'movie'),)
         index_together = (('user', 'movie'),)
 
-    def __str__(self) -> str:
-        return self.movie
+    def __int__(self) -> int:
+        return self.stars
 
 
      
