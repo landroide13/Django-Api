@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validate_data):
         user = User.objects.create_user(**validate_data)
-        token = Token.objects.create(user=user)
+        Token.objects.create(user=user)
         return user     
 
 class MovieSerializer(serializers.ModelSerializer):

@@ -18,7 +18,7 @@ class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     authentication_classes = (TokenAuthentication, )
-    #permission_classes = (IsAuthenticated,)
+    #permission_classes = [IsAuthenticated]
     permission_classes = (AllowAny,)
 
     @action(detail=True, methods=['POST'])
@@ -59,11 +59,16 @@ class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
     authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = [IsAuthenticated]
+    permission_classes = (AllowAny,)
 
+    def update(self, request, *args, **kwargs):
+        response = {'message': 'Cannot update'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
-
-
+    def create(self, request, *args, **kwargs):
+        response = {'message': 'Cannot rate'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
 
